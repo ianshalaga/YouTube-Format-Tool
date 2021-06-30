@@ -16,7 +16,7 @@ formato = ["casual", "ranked", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
 jugadores_lista = [
-    "Sigfrancis A1",
+    "SigFrancis",
     "Camus",
     "Junixart",
     "zen-x",

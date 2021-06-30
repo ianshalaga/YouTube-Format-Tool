@@ -43,7 +43,7 @@ import random # Manejo de aleatoriedad
 
 canales_dict = {
     "Soul Calibur Chile": ["https://www.youtube.com/channel/UCRmPkSnLwBG7mBg8L2tGLSw"],
-    "Sigfrancis A1": ["https://www.youtube.com/user/refran5"],
+    "SigFrancis": ["https://www.youtube.com/user/refran5"],
     "Camus": ["https://www.youtube.com/channel/UCCfUfXhGb4CWfcufUfo0nVQ", "https://www.youtube.com/channel/UC-SWYSSJDofVuMl-ch8T92A"],
     "Junixart": ["https://www.youtube.com/user/junixart"],
     "zen-x": ["https://www.twitch.tv/zenx_arg"],
@@ -66,6 +66,7 @@ canales_dict = {
 
 
 listas_reproduccion_dict = {
+    "SigFrancis": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6fRaOJPS84khrnPhlKodB7",
     "Kyoragecl": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4wszcCcv3sVPWv5kGHOW5y",
     "LN_Mastodon": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5WtjO5OrpAs9VeRC3LPCyj",
     "DuCaine": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5ne2e6POOCmL43DogtrDzo",
