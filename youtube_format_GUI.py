@@ -16,6 +16,9 @@ formato = ["casual", "ranked", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
 jugadores_lista = [
+    "Nightwing_Ialmar",
+    "Ubitreides",
+    "Saiyajino",
     "Adrianncr",
     "RYUDO",
     "SigFrancis",

@@ -42,9 +42,13 @@ import random # Manejo de aleatoriedad
 
 
 canales_dict = {
-    "Soul Calibur Chile": ["https://www.youtube.com/channel/UCRmPkSnLwBG7mBg8L2tGLSw"],
+    "Soul Calibur Chile": ["https://www.youtube.com/channel/UCRmPkSnLwBG7mBg8L2tGLSw",
+                           "https://www.instagram.com/soulcalibur_chile",
+                           "https://www.facebook.com/groups/276406139065377",
+                           "https://twitter.com/soulcalibur_cl"],
     "SigFrancis": ["https://www.youtube.com/user/refran5"],
-    "Camus": ["https://www.youtube.com/channel/UCCfUfXhGb4CWfcufUfo0nVQ", "https://www.youtube.com/channel/UC-SWYSSJDofVuMl-ch8T92A"],
+    "Camus": ["https://www.youtube.com/channel/UCCfUfXhGb4CWfcufUfo0nVQ",
+              "https://www.youtube.com/channel/UC-SWYSSJDofVuMl-ch8T92A"],
     "Junixart": ["https://www.youtube.com/user/junixart"],
     "zen-x": ["https://www.twitch.tv/zenx_arg"],
     "Eche": ["https://www.youtube.com/channel/UCYOfh1vaybY-AgE5WCOgNfQ"],
@@ -61,11 +65,17 @@ canales_dict = {
     "Sebas_ep90": ["https://www.youtube.com/channel/UC7S9cOu9ob384mkuscDhsFw"],
     "Albhed_x": ["https://www.youtube.com/channel/UCFrFKjy5e2XVomZx-ohyC2Q"],
     "wylde": ["https://www.youtube.com/user/guitardevilf5/featured"],
-    "Kyoragecl": ["https://www.youtube.com/user/unrealassasin"]
+    "Kyoragecl": ["https://www.youtube.com/user/unrealassasin"],
+    "Nightwing_Ialmar": ["https://www.twitch.tv/ialmar94",
+                         "https://www.youtube.com/channel/UCoLiC9BbrJFWRe2GwTbpoyQ",
+                         "https://www.youtube.com/channel/UC0jIpWqYY-768ADajSOSMMw"]
 }
 
 
 listas_reproduccion_dict = {
+    "Nightwing_Ialmar": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7BZE16Lds-STFuexFYS4sI",
+    "Lang_FFXIII": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7oeQGl1kXJfLod9wwji8NQ",
+    "Ubitreides": "https://www.youtube.com/playlist?list=PL90QAKwVH1t67SU9-Br4O5a9teuu4cZvL",
     "Adrianncr": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7zOm81n6T_fUa5aNyuHJ0v",
     "RYUDO": "https://www.youtube.com/playlist?list=PL90QAKwVH1t74Qzm4wlx604Ffw1hbHY6x",
     "SigFrancis": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6fRaOJPS84khrnPhlKodB7",
@@ -174,13 +184,15 @@ def obtener_canales(archivo_abierto, canales_dict, rival_nombre, canales_adicion
         archivo_abierto.write(canal_descripcion)
         if canales_adicionales != []:
             for canal in canales_adicionales:
-                canal_descripcion = canal + ": " + canales_dict[canal][0]
+                # canal_descripcion = canal + ": " + canales_dict[canal][0]
+                canal_descripcion = canal + ": " + " ".join(canales_dict[canal]) + "\n"
                 archivo_abierto.write(canal_descripcion)
                 archivo_abierto.write("\n")
     elif canales_adicionales != []:
         archivo_abierto.write("\nCanales:\n")
         for canal in canales_adicionales:
-                canal_descripcion = canal + ": " + canales_dict[canal][0]
+                # canal_descripcion = canal + ": " + canales_dict[canal][0]
+                canal_descripcion = canal + ": " + " ".join(canales_dict[canal]) + "\n"
                 archivo_abierto.write(canal_descripcion)
                 archivo_abierto.write("\n")
     
@@ -389,10 +401,10 @@ def videos_por_parte(mkvmerge_ruta, # Ruta donde se aloja mkvmerge.exe
 
         # Sintaxis para mkvmerge
         mkvmerge_lista = [mkvmerge_ruta,
-                          "-o",
-                          nombre_salida,
-                          str(videos_union_lista[0])
-                         ]
+                        "-o",
+                        nombre_salida,
+                        str(videos_union_lista[0])
+                        ]
         pantalla_final_ruta = seleccionar_pantalla_final(pantallas_final_ruta,ODatosNombre.plataforma)
         for i in range(1,len(videos_union_lista),1):
             mkvmerge_lista.append("+")
