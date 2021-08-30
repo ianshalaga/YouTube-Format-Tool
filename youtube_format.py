@@ -42,6 +42,7 @@ import random # Manejo de aleatoriedad
 
 
 canales_dict = {
+    "Karol": ["https://www.twitch.tv/karolkjx"],
     "Soul Calibur Chile": ["https://www.youtube.com/channel/UCRmPkSnLwBG7mBg8L2tGLSw",
                            "https://www.instagram.com/soulcalibur_chile",
                            "https://www.facebook.com/groups/276406139065377",
@@ -73,6 +74,14 @@ canales_dict = {
 
 
 listas_reproduccion_dict = {
+    "Toshiaki": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6-w5tz92uI5J-ThcivHCC9",
+    "Karol": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4_84l7sweKXqbAxBUCD6Wb",
+    "Rodol_Foffo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5vafp6hLS2lt6KF0S2m86a",
+    "Fire red": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5Ww1-2kqO5AeMJfuNBvzsb",
+    "ozkuervo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4SnxBgafpkevWUxByL_Gpn",
+    "JaffarWolf": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6OazJzpkop7W6u9v4Q4cgH",
+    "leospirandio": "https://www.youtube.com/playlist?list=PL90QAKwVH1t76HmAfTwU9dxQp28Uv2bPX",
+    "Camus": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5F3cOnsi0LEWya5FztxGTw",
     "Nightwing_Ialmar": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7BZE16Lds-STFuexFYS4sI",
     "Lang_FFXIII": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7oeQGl1kXJfLod9wwji8NQ",
     "Ubitreides": "https://www.youtube.com/playlist?list=PL90QAKwVH1t67SU9-Br4O5a9teuu4cZvL",

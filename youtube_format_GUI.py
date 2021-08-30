@@ -16,6 +16,13 @@ formato = ["casual", "ranked", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
 jugadores_lista = [
+    "Toshiaki",
+    "Karol",
+    "Rodol_Foffo",
+    "Fire red",
+    "ozkuervo",
+    "JaffarWolf",
+    "leospirandio",
     "Nightwing_Ialmar",
     "Ubitreides",
     "Saiyajino",
