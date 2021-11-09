@@ -74,6 +74,7 @@ canales_dict = {
 
 
 listas_reproduccion_dict = {
+    "team ninja": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5JUGLclQVjE3PWEGqC-ozz",
     "Toshiaki": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6-w5tz92uI5J-ThcivHCC9",
     "Karol": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4_84l7sweKXqbAxBUCD6Wb",
     "Rodol_Foffo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5vafp6hLS2lt6KF0S2m86a",
