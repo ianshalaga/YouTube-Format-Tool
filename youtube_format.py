@@ -223,6 +223,7 @@ def texto_adicional(archivo_abierto):
     Texto adicional para añadir al final de la descripción del video de YouTube.
     '''
     texto_lista = ["Soul Calibur VI desde 0: https://www.youtube.com/playlist?list=PL90QAKwVH1t4GEDI3Ym8JeL88AyJKcu5S",
+                "Soul Calibur VI (2.31) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t6IRTa0tafOj45cbFqzmxYH",
                 "Soul Calibur VI (2.31) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5-BK_yFrn6UDBXQQYoaOL7",
                 "Soul Calibur VI (2.30) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5CsrL_ilDpyprz6UwaKLC5",
                 "Soul Calibur VI (2.25.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7XcfURbvuIGUXif3zApMQb",
