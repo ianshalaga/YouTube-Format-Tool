@@ -16,6 +16,7 @@ formato = ["casual", "ranked", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
 jugadores_lista = [
+    "Kovas",
     "team ninja",
     "Toshiaki",
     "Karol",
