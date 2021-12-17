@@ -74,6 +74,9 @@ canales_dict = {
 
 
 listas_reproduccion_dict = {
+    "estebangris": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7dhJeajYfB2WQ_k0U0SLks",
+    "Edu Bushi": "https://www.youtube.com/playlist?list=PL90QAKwVH1t52khCu1KxcwoCMzKrZ_WiB",
+    "Skymathiana": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7orxKOl8Hi3LlGl3TaiEic",
     "Kovas": "https://www.youtube.com/playlist?list=PL90QAKwVH1t76kUbMnqm_sM49OtCkwUML",
     "raynarrok": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4yWgUWujRmh_CpXPv6ovG1",
     "team ninja": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5JUGLclQVjE3PWEGqC-ozz",
@@ -189,24 +192,26 @@ def obtener_canales(archivo_abierto, canales_dict, rival_nombre, canales_adicion
     Agrega al archivo de descripción los enlaces a los canales de YouTube pertinentes,
     estos son, los del jugador rival más algunos adicionales en caso de haber.
     '''
-    if rival_nombre in canales_dict.keys():
-        archivo_abierto.write("\nCanales:\n")
-        canal_url_lista = canales_dict[rival_nombre]
-        canal_descripcion = rival_nombre + ": " + " ".join(canal_url_lista) + "\n"
-        archivo_abierto.write(canal_descripcion)
-        if canales_adicionales != []:
+    archivo_abierto.write("\nCanales:\n")
+    for e in rival_nombre:
+        if e in canales_dict.keys():
+            # archivo_abierto.write("\nCanales:\n")
+            canal_url_lista = canales_dict[e]
+            canal_descripcion = e + ": " + " ".join(canal_url_lista) + "\n"
+            archivo_abierto.write(canal_descripcion)
+            if canales_adicionales != []:
+                for canal in canales_adicionales:
+                    # canal_descripcion = canal + ": " + canales_dict[canal][0]
+                    canal_descripcion = canal + ": " + " ".join(canales_dict[canal]) + "\n"
+                    archivo_abierto.write(canal_descripcion)
+                    archivo_abierto.write("\n")
+        elif canales_adicionales != []:
+            # archivo_abierto.write("\nCanales:\n")
             for canal in canales_adicionales:
-                # canal_descripcion = canal + ": " + canales_dict[canal][0]
-                canal_descripcion = canal + ": " + " ".join(canales_dict[canal]) + "\n"
-                archivo_abierto.write(canal_descripcion)
-                archivo_abierto.write("\n")
-    elif canales_adicionales != []:
-        archivo_abierto.write("\nCanales:\n")
-        for canal in canales_adicionales:
-                # canal_descripcion = canal + ": " + canales_dict[canal][0]
-                canal_descripcion = canal + ": " + " ".join(canales_dict[canal]) + "\n"
-                archivo_abierto.write(canal_descripcion)
-                archivo_abierto.write("\n")
+                    # canal_descripcion = canal + ": " + canales_dict[canal][0]
+                    canal_descripcion = canal + ": " + " ".join(canales_dict[canal]) + "\n"
+                    archivo_abierto.write(canal_descripcion)
+                    archivo_abierto.write("\n")
     
 def obtener_listas_de_reproduccion(archivo_abierto, reproduccion_lista, listas_reproduccion_dict, juego_nombre):
     '''
@@ -224,27 +229,29 @@ def texto_adicional(archivo_abierto):
     '''
     Texto adicional para añadir al final de la descripción del video de YouTube.
     '''
-    texto_lista = ["Soul Calibur VI desde 0: https://www.youtube.com/playlist?list=PL90QAKwVH1t4GEDI3Ym8JeL88AyJKcu5S",
-                "Soul Calibur VI (2.31) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t6IRTa0tafOj45cbFqzmxYH",
-                "Soul Calibur VI (2.31) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5-BK_yFrn6UDBXQQYoaOL7",
-                "Soul Calibur VI (2.30) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5CsrL_ilDpyprz6UwaKLC5",
-                "Soul Calibur VI (2.25.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7XcfURbvuIGUXif3zApMQb",
-                "Soul Calibur VI (2.25.01) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5Gee5X7k9my0CvdIgajlMb",
-                "Soul Calibur VI (2.25) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7CxstJnE5h68OA-mpGWb-5",
-                "Soul Calibur VI (2.21) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4JWONGVerwdu6GWs6kUowB",
-                "Soul Calibur VI (2.12) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4XUXIaIzrm5tv_OAonfyU9",
-                "Soul Calibur VI (2.10.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6MKVd2hJJ-CzBFYykjK_zx",
-                "Soul Calibur VI (2.05) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7L6mlmtX4dArS5V2cGWYtR",
-                "Soul Calibur VI (2.02) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6YwKhGeCki9ONi4eRIpA8f",
-                "Soul Calibur VI (2.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6BabI6xP4IIkBPM0pI9OWC",
-                "Soul Calibur VI (S1) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5d1ZrcDC7sOssxuvh2opx3",
-                "Soul Calibur VI (S1) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6g09h8t4dEmNKLL5BtnENW",
-                "Soul Calibur III: https://www.youtube.com/playlist?list=PL90QAKwVH1t6vuanXTfU2s6kzO0rNq6Le",
-                "Soul Calibur IV: https://www.youtube.com/playlist?list=PL90QAKwVH1t4Ps9-pU3qGUc8wkGpmSgqH",
-                "Soul Calibur V: https://www.youtube.com/playlist?list=PL90QAKwVH1t66BTTz0UDi3nTF8ro6BAJa",
-                "Soul Calibur - The Legend Will Never Die: https://www.youtube.com/playlist?list=PL90QAKwVH1t6RJZLrQW8aGjbhQFgrA8O4",
-                "Soul Calibur VI: https://www.youtube.com/playlist?list=PL90QAKwVH1t7TUmdcc1oGOOWm6a1pQCrG",
-                "Soul Calibur VI - Historias: https://www.youtube.com/playlist?list=PL90QAKwVH1t7keR4IGG5vJG9mnvbgAM4N"
+    texto_lista = [
+        "Soul Calibur VI desde 0: https://www.youtube.com/playlist?list=PL90QAKwVH1t4GEDI3Ym8JeL88AyJKcu5S",
+        "Soul Calibur VI (2.31) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t6IRTa0tafOj45cbFqzmxYH",
+        "Soul Calibur VI (2.31) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5-BK_yFrn6UDBXQQYoaOL7",
+        "Soul Calibur VI (2.30) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5CsrL_ilDpyprz6UwaKLC5",
+        "Soul Calibur VI (2.25.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7XcfURbvuIGUXif3zApMQb",
+        "Soul Calibur VI (2.25.01) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5Gee5X7k9my0CvdIgajlMb",
+        "Soul Calibur VI (2.25) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7CxstJnE5h68OA-mpGWb-5",
+        "Soul Calibur VI (2.21) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4JWONGVerwdu6GWs6kUowB",
+        "Soul Calibur VI (2.12) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4XUXIaIzrm5tv_OAonfyU9",
+        "Soul Calibur VI (2.10.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6MKVd2hJJ-CzBFYykjK_zx",
+        "Soul Calibur VI (2.05) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7L6mlmtX4dArS5V2cGWYtR",
+        "Soul Calibur VI (2.02) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6YwKhGeCki9ONi4eRIpA8f",
+        "Soul Calibur VI (2.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6BabI6xP4IIkBPM0pI9OWC",
+        "Soul Calibur VI (S1) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5d1ZrcDC7sOssxuvh2opx3",
+        "Soul Calibur VI (S1) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6g09h8t4dEmNKLL5BtnENW",
+        "SCUFFLE: https://github.com/aHorseface/Scuffle/releases"
+        "Soul Calibur III: https://www.youtube.com/playlist?list=PL90QAKwVH1t6vuanXTfU2s6kzO0rNq6Le",
+        "Soul Calibur IV: https://www.youtube.com/playlist?list=PL90QAKwVH1t4Ps9-pU3qGUc8wkGpmSgqH",
+        "Soul Calibur V: https://www.youtube.com/playlist?list=PL90QAKwVH1t66BTTz0UDi3nTF8ro6BAJa",
+        "Soul Calibur - The Legend Will Never Die: https://www.youtube.com/playlist?list=PL90QAKwVH1t6RJZLrQW8aGjbhQFgrA8O4",
+        "Soul Calibur VI: https://www.youtube.com/playlist?list=PL90QAKwVH1t7TUmdcc1oGOOWm6a1pQCrG",
+        "Soul Calibur VI - Historias: https://www.youtube.com/playlist?list=PL90QAKwVH1t7keR4IGG5vJG9mnvbgAM4N"
     ]
     archivo_abierto.write("\n".join(texto_lista))
 
@@ -390,10 +397,18 @@ def videos_por_parte(mkvmerge_ruta, # Ruta donde se aloja mkvmerge.exe
         nombre_descripcion = ODatosNombre.generar_nombre() + str(pos_lista[0]+1) + "/" + str(len(lista_resultado)) + ")"
 
         # Archivo de descripción del video
-        if ODatosNombre.jugador1_nombre == "Seyfer": # El rival es aquel que no soy yo
-            rival_nombre = ODatosNombre.jugador2_nombre
-        else:
-            rival_nombre = ODatosNombre.jugador1_nombre
+        players_names_list = list()
+        for e in [ODatosNombre.jugador1_nombre, ODatosNombre.jugador2_nombre]:
+            if e != "Seyfer":
+                players_names_list.append(e)
+
+        # if ODatosNombre.jugador1_nombre == "Seyfer": # El rival es aquel que no soy yo
+        #     # rival_nombre = ODatosNombre.jugador2_nombre
+        #     players_names_list.append(ODatosNombre.jugador2_nombre)
+
+        # else:
+        #     # rival_nombre = ODatosNombre.jugador1_nombre
+        #     players_names_list.append(ODatosNombre.jugador1_nombre)
         if ODatosNombre.combate_formato.startswith("FT"):
             formato = "Duelos"
         elif ODatosNombre.combate_formato == "ranked":
@@ -401,12 +416,12 @@ def videos_por_parte(mkvmerge_ruta, # Ruta donde se aloja mkvmerge.exe
         else:
             formato = "Casual"
         personajes_listas_reproduccion = list(set(ODatosNombre.jugador1_personajes.split(", ") + ODatosNombre.jugador2_personajes.split(", "))) # Se eliminan personajes repetidos
-        reproduccion_lista = [rival_nombre] + personajes_listas_reproduccion + [formato]
+        reproduccion_lista = players_names_list + personajes_listas_reproduccion + [formato]
         generar_descripcion(nombre_salida_marcas_tiempo,
                             nombre_descripcion,
                             lista_resultado_duraciones,
                             pos_lista,
-                            rival_nombre,
+                            players_names_list,
                             ODatosNombre.canales_adicionales,
                             reproduccion_lista,
                             ODatosNombre.juego_nombre,

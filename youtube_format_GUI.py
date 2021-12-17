@@ -16,6 +16,9 @@ formato = ["casual", "ranked", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
 jugadores_lista = [
+    "estebangris",
+    "Edu Bushi",
+    "Skymathiana",
     "Kovas",
     "team ninja",
     "Toshiaki",
