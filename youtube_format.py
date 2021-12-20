@@ -7,41 +7,13 @@ import os # Opciones de sistema operativo
 import shutil # Para mover archivos y directorios
 import subprocess # Para ejecutar comandos de consola
 import random # Manejo de aleatoriedad
-# import cv2 # OpenCV 2.0, procesamiento de imágenes
 
-
-
-''' FUNCIONES '''
-
-# def extraer_fotogramas(ffmpeg_ruta,video_ruta,salida_ruta):
-#     '''
-#     Extrae todos los fotogramas de un video.
-#     '''
-#     subprocess.run([ffmpeg_ruta,
-#                     "-loglevel", "quiet",
-#                     "-i",
-#                     video_ruta,
-#                     os.path.join(salida_ruta,"fotograma" + "_imagen%04d_" + "1.jpg"),
-#                     "-hide_banner"])
-
-
-# def crear_dataset(imagenes_ruta, salida_ruta):
-#     imagenes = Path(imagenes_ruta) # Imágenes en el directorio
-#     print("Ruta de las imagenes: {}".format(imagenes)) # Ruta de las imagenes
-#     c = 1
-#     for imagen_ruta in imagenes.iterdir():
-#         print(imagen_ruta)
-#         imagen = cv2.imread(str(imagen_ruta),cv2.IMREAD_COLOR)
-#         filas, columnas, _ = imagen.shape
-#         imagen = cv2.resize(imagen,(int(columnas/6),int(filas/6)))
-#         filas, _, _ = imagen.shape
-#         imagen = imagen[:int(filas/4),:]
-#         salida = os.path.join(salida_ruta,str(c)+"_1.jpg")
-#         cv2.imwrite(salida,imagen)
-#         c += 1
 
 
 canales_dict = {
+    "Bad Gato": ["https://www.youtube.com/channel/UCcMG9OE9PlOvXd8PIgl1l-Q"],
+    "DonMarlboro": ["https://www.youtube.com/channel/UCjYR50uj6yA3UkyAq5FCqtw"],
+    "SaimonChaild": ["https://www.youtube.com/channel/UCDLKmtoE80-mGNzcelvcSwA"],
     "Karol": ["https://www.twitch.tv/karolkjx"],
     "Soul Calibur Chile": ["https://www.youtube.com/channel/UCRmPkSnLwBG7mBg8L2tGLSw",
                            "https://www.instagram.com/soulcalibur_chile",
