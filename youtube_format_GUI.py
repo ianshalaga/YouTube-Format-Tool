@@ -3,7 +3,7 @@
 import PySimpleGUI as psg
 import os.path
 import youtube_format as ytf
-
+import json
 
 ''' DISEÑO '''
 
@@ -15,83 +15,96 @@ tipo = ["Online", "Offline"]
 formato = ["casual", "ranked", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
-jugadores_lista = [
-    "Bad Gato",
-    "DonMarlboro",
-    "estebangris",
-    "Edu Bushi",
-    "Skymathiana",
-    "Kovas",
-    "team ninja",
-    "Toshiaki",
-    "Karol",
-    "Rodol_Foffo",
-    "Fire red",
-    "ozkuervo",
-    "JaffarWolf",
-    "leospirandio",
-    "Nightwing_Ialmar",
-    "Ubitreides",
-    "Saiyajino",
-    "Adrianncr",
-    "RYUDO",
-    "SigFrancis",
-    "Camus",
-    "Junixart",
-    "zen-x",
-    "Eche",
-    "Gontranno",
-    "DemonioGarudaCL",
-    "raynarrok",
-    "Eddy_Beowulf",
-    "Maxxus",
-    "E1000",
-    "Lang_FFXIII",
-    "LN_Mastodon",
-    "SaimonChaild",
-    "Sonix-X",
-    "wylde",
-    "Estaries",
-    "Marv_995",
-    "Albhed_x",
-    "Seyfer",
-    "Sebas_ep90",
-    "KenkaOni",
-    "DuCaine",
-    "Kyoragecl"
-]
+# Load json5
+with open("scvi_db.json5", "r", encoding="utf8") as f:
+    db_dict = json.load(f)
+
+jugadores_lista = list()
+personajes_lista = list()
+for key, value in db_dict.items():
+    if isinstance(value, dict):
+        if value["type"] == "player":
+            jugadores_lista.append(key)
+        if value["type"] == "character":
+            personajes_lista.append(key)
+
+# jugadores_lista = [
+#     "Bad Gato",
+#     "DonMarlboro",
+#     "estebangris",
+#     "Edu Bushi",
+#     "Skymathiana",
+#     "Kovas",
+#     "team ninja",
+#     "Toshiaki",
+#     "Karol",
+#     "Rodol_Foffo",
+#     "Fire red",
+#     "ozkuervo",
+#     "JaffarWolf",
+#     "leospirandio",
+#     "Nightwing_Ialmar",
+#     "Ubitreides",
+#     "Saiyajino",
+#     "Adrianncr",
+#     "RYUDO",
+#     "SigFrancis",
+#     "Camus",
+#     "Junixart",
+#     "zen-x",
+#     "Eche",
+#     "Gontranno",
+#     "DemonioGarudaCL",
+#     "raynarrok",
+#     "Eddy_Beowulf",
+#     "Maxxus",
+#     "E1000",
+#     "Lang_FFXIII",
+#     "LN_Mastodon",
+#     "SaimonChaild",
+#     "Sonix-X",
+#     "wylde",
+#     "Estaries",
+#     "Marv_995",
+#     "Albhed_x",
+#     "Seyfer",
+#     "Sebas_ep90",
+#     "KenkaOni",
+#     "DuCaine",
+#     "Kyoragecl"
+# ]
 jugadores_lista.sort()
 
-personajes_lista = [
-    "Taki",
-    "Talim",
-    "Setsuka",
-    "Hilde",
-    "2B",
-    "Azwel",
-    "Geralt",
-    "Groh",
-    "Haohmaru",
-    "Zasalamel",
-    "Tira",
-    "Amy",
-    "Cassandra",
-    "Hwang",
-    "Raphael",
-    "Xianghua",
-    "Astaroth",
-    "Ivy",
-    "Kilik",
-    "Maxi",
-    "Seong Mi-na",
-    "Sophitia",
-    "Yoshimitsu",
-    "Cervantes",
-    "Mitsurugi",
-    "Nightmare",
-    "Siegfried",
-    "Voldo"
-]
+# personajes_lista = [
+#     "Taki",
+#     "Talim",
+#     "Setsuka",
+#     "Hilde",
+#     "2B",
+#     "Azwel",
+#     "Geralt",
+#     "Groh",
+#     "Haohmaru",
+#     "Zasalamel",
+#     "Tira",
+#     "Amy",
+#     "Cassandra",
+#     "Hwang",
+#     "Raphael",
+#     "Xianghua",
+#     "Astaroth",
+#     "Ivy",
+#     "Kilik",
+#     "Maxi",
+#     "Seong Mi-na",
+#     "Sophitia",
+#     "Yoshimitsu",
+#     "Cervantes",
+#     "Mitsurugi",
+#     "Nightmare",
+#     "Siegfried",
+#     "Voldo"
+# ]
 personajes_lista.sort()
 
 formulario = [

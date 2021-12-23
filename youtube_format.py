@@ -1,5 +1,4 @@
-''' BIBLIOTECAS '''
-
+from ntpath import join
 from pathlib import Path # Para administrar archivos y directorios
 from moviepy.editor import VideoFileClip # Para extraer metadatos archivos de video
 import math # Módulo matemático
@@ -7,109 +6,110 @@ import os # Opciones de sistema operativo
 import shutil # Para mover archivos y directorios
 import subprocess # Para ejecutar comandos de consola
 import random # Manejo de aleatoriedad
+import json
 
 
 
-canales_dict = {
-    "Bad Gato": ["https://www.youtube.com/channel/UCcMG9OE9PlOvXd8PIgl1l-Q"],
-    "DonMarlboro": ["https://www.youtube.com/channel/UCjYR50uj6yA3UkyAq5FCqtw"],
-    "SaimonChaild": ["https://www.youtube.com/channel/UCDLKmtoE80-mGNzcelvcSwA"],
-    "Karol": ["https://www.twitch.tv/karolkjx"],
-    "Soul Calibur Chile": ["https://www.youtube.com/channel/UCRmPkSnLwBG7mBg8L2tGLSw",
-                           "https://www.instagram.com/soulcalibur_chile",
-                           "https://www.facebook.com/groups/276406139065377",
-                           "https://twitter.com/soulcalibur_cl"],
-    "SigFrancis": ["https://www.youtube.com/user/refran5"],
-    "Camus": ["https://www.youtube.com/channel/UCCfUfXhGb4CWfcufUfo0nVQ",
-              "https://www.youtube.com/channel/UC-SWYSSJDofVuMl-ch8T92A"],
-    "Junixart": ["https://www.youtube.com/user/junixart"],
-    "zen-x": ["https://www.twitch.tv/zenx_arg"],
-    "Eche": ["https://www.youtube.com/channel/UCYOfh1vaybY-AgE5WCOgNfQ"],
-    "Gontranno": ["https://www.youtube.com/channel/UCo3EZ-0WFtmAErr8f5KFY7w"],
-    "DemonioGarudaCL": ["https://www.youtube.com/channel/UC-f5ATC1hxZJwxcSLVSxtsQ"],
-    "raynarrok": ["https://www.youtube.com/user/lraynarrokl"],
-    "Eddy_Beowulf": ["https://www.youtube.com/channel/UCVwZEdvYzonU_vFIfcKlXpQ"],
-    "Maxxus": ["https://www.youtube.com/channel/UC5KGtnO8zi9B0SR5_xub60w"],
-    "E1000": ["https://www.youtube.com/channel/UC-28NThOmlZ_06Te3QLJKtQ"],
-    "Lang_FFXIII": ["https://www.youtube.com/channel/UCwqY50qCzN5bXuVtWyaaFbA"],
-    "LN_Mastodon": ["https://www.youtube.com/channel/UCm7pucCgAFgKUFOhkfrMjMQ"],
-    "SaimonChaild": ["https://www.twitch.tv/saimonchaild_"],
-    "Sonic-X": ["https://www.youtube.com/c/SonicX"],
-    "Sebas_ep90": ["https://www.youtube.com/channel/UC7S9cOu9ob384mkuscDhsFw"],
-    "Albhed_x": ["https://www.youtube.com/channel/UCFrFKjy5e2XVomZx-ohyC2Q"],
-    "wylde": ["https://www.youtube.com/user/guitardevilf5/featured"],
-    "Kyoragecl": ["https://www.youtube.com/user/unrealassasin"],
-    "Nightwing_Ialmar": ["https://www.twitch.tv/ialmar94",
-                         "https://www.youtube.com/channel/UCoLiC9BbrJFWRe2GwTbpoyQ",
-                         "https://www.youtube.com/channel/UC0jIpWqYY-768ADajSOSMMw"]
-}
+# canales_dict = {
+#     "Bad Gato": ["https://www.youtube.com/channel/UCcMG9OE9PlOvXd8PIgl1l-Q"],
+#     "DonMarlboro": ["https://www.youtube.com/channel/UCjYR50uj6yA3UkyAq5FCqtw"],
+#     "SaimonChaild": ["https://www.youtube.com/channel/UCDLKmtoE80-mGNzcelvcSwA"],
+#     "Karol": ["https://www.twitch.tv/karolkjx"],
+#     "Soul Calibur Chile": ["https://www.youtube.com/channel/UCRmPkSnLwBG7mBg8L2tGLSw",
+#                            "https://www.instagram.com/soulcalibur_chile",
+#                            "https://www.facebook.com/groups/276406139065377",
+#                            "https://twitter.com/soulcalibur_cl"],
+#     "SigFrancis": ["https://www.youtube.com/user/refran5"],
+#     "Camus": ["https://www.youtube.com/channel/UCCfUfXhGb4CWfcufUfo0nVQ",
+#               "https://www.youtube.com/channel/UC-SWYSSJDofVuMl-ch8T92A"],
+#     "Junixart": ["https://www.youtube.com/user/junixart"],
+#     "zen-x": ["https://www.twitch.tv/zenx_arg"],
+#     "Eche": ["https://www.youtube.com/channel/UCYOfh1vaybY-AgE5WCOgNfQ"],
+#     "Gontranno": ["https://www.youtube.com/channel/UCo3EZ-0WFtmAErr8f5KFY7w"],
+#     "DemonioGarudaCL": ["https://www.youtube.com/channel/UC-f5ATC1hxZJwxcSLVSxtsQ"],
+#     "raynarrok": ["https://www.youtube.com/user/lraynarrokl"],
+#     "Eddy_Beowulf": ["https://www.youtube.com/channel/UCVwZEdvYzonU_vFIfcKlXpQ"],
+#     "Maxxus": ["https://www.youtube.com/channel/UC5KGtnO8zi9B0SR5_xub60w"],
+#     "E1000": ["https://www.youtube.com/channel/UC-28NThOmlZ_06Te3QLJKtQ"],
+#     "Lang_FFXIII": ["https://www.youtube.com/channel/UCwqY50qCzN5bXuVtWyaaFbA"],
+#     "LN_Mastodon": ["https://www.youtube.com/channel/UCm7pucCgAFgKUFOhkfrMjMQ"],
+#     "SaimonChaild": ["https://www.twitch.tv/saimonchaild_"],
+#     "Sonic-X": ["https://www.youtube.com/c/SonicX"],
+#     "Sebas_ep90": ["https://www.youtube.com/channel/UC7S9cOu9ob384mkuscDhsFw"],
+#     "Albhed_x": ["https://www.youtube.com/channel/UCFrFKjy5e2XVomZx-ohyC2Q"],
+#     "wylde": ["https://www.youtube.com/user/guitardevilf5/featured"],
+#     "Kyoragecl": ["https://www.youtube.com/user/unrealassasin"],
+#     "Nightwing_Ialmar": ["https://www.twitch.tv/ialmar94",
+#                          "https://www.youtube.com/channel/UCoLiC9BbrJFWRe2GwTbpoyQ",
+#                          "https://www.youtube.com/channel/UC0jIpWqYY-768ADajSOSMMw"]
+# }
 
 
-listas_reproduccion_dict = {
-    "estebangris": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7dhJeajYfB2WQ_k0U0SLks",
-    "Edu Bushi": "https://www.youtube.com/playlist?list=PL90QAKwVH1t52khCu1KxcwoCMzKrZ_WiB",
-    "Skymathiana": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7orxKOl8Hi3LlGl3TaiEic",
-    "Kovas": "https://www.youtube.com/playlist?list=PL90QAKwVH1t76kUbMnqm_sM49OtCkwUML",
-    "raynarrok": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4yWgUWujRmh_CpXPv6ovG1",
-    "team ninja": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5JUGLclQVjE3PWEGqC-ozz",
-    "Toshiaki": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6-w5tz92uI5J-ThcivHCC9",
-    "Karol": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4_84l7sweKXqbAxBUCD6Wb",
-    "Rodol_Foffo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5vafp6hLS2lt6KF0S2m86a",
-    "Fire red": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5Ww1-2kqO5AeMJfuNBvzsb",
-    "ozkuervo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4SnxBgafpkevWUxByL_Gpn",
-    "JaffarWolf": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6OazJzpkop7W6u9v4Q4cgH",
-    "leospirandio": "https://www.youtube.com/playlist?list=PL90QAKwVH1t76HmAfTwU9dxQp28Uv2bPX",
-    "Camus": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5F3cOnsi0LEWya5FztxGTw",
-    "Nightwing_Ialmar": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7BZE16Lds-STFuexFYS4sI",
-    "Lang_FFXIII": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7oeQGl1kXJfLod9wwji8NQ",
-    "Ubitreides": "https://www.youtube.com/playlist?list=PL90QAKwVH1t67SU9-Br4O5a9teuu4cZvL",
-    "Adrianncr": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7zOm81n6T_fUa5aNyuHJ0v",
-    "RYUDO": "https://www.youtube.com/playlist?list=PL90QAKwVH1t74Qzm4wlx604Ffw1hbHY6x",
-    "SigFrancis": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6fRaOJPS84khrnPhlKodB7",
-    "Kyoragecl": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4wszcCcv3sVPWv5kGHOW5y",
-    "LN_Mastodon": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5WtjO5OrpAs9VeRC3LPCyj",
-    "DuCaine": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5ne2e6POOCmL43DogtrDzo",
-    "Eddy_Beowulf": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6libDfzT5ZgnCKty20jPki",
-    "SaimonChaild": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6BIHUbhWoiImcYZbeQYFzW",
-    "Sebas_ep90": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5cCPrXbS3vyIIHSP5ssLzE",
-    "Gontranno": "https://www.youtube.com/playlist?list=PL90QAKwVH1t78dk4jj6x51dJa_oEFQJJu",
-    "E1000": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5OrZV2eQgXC2S2OslYIoNK",
-    "wylde": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6EGhT85l7I_dyhcr8kScjl",
-    "Estaries": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5vdm87xTohCp1mYcr0RXBb",
-    "Marv_995": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7tqJ9tdKQ377j_PGNwTKb9",
-    "zen-x": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5iVwDcfNHJ30ORntTWE_Mt",
-    "Albhed_x": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6tHpF3Q1Q1JQAGO-re1e-X",
-    "Taki": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7W3yhPMKyU9uje26G1ZnBu",
-    "Talim": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7R1-ibZfefU2wUDRAIa3G2",
-    "Setsuka": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6GsZ9sHFdkhLJ4MdSEOrwF",
-    "Hilde": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5CnUs7a5OfQAQsL_VQdAF4",
-    "2B": "https://www.youtube.com/playlist?list=PL90QAKwVH1t60fEU20FYYg20Tp1Y5FBGQ",
-    "Azwel": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6q-TlxlQSVO-F1WLcSLT03",
-    "Geralt": "https://www.youtube.com/playlist?list=PL90QAKwVH1t78v9zPaxD-M2WS5W8Shdf9",
-    "Groh": "https://www.youtube.com/playlist?list=PL90QAKwVH1t75-dwernEnAEWlSX73fzex",
-    "Haohmaru": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4IvEvmhRHEfz-xEzMaoLiR",
-    "Zasalamel": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6a2rA51DIX72J95BqTnsbh",
-    "Tira": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4dqovymm_ftxh69-vXOG0e",
-    "Amy": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7QvwDN2c4jbLq0hhqVlOFq",
-    "Cassandra": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5anV4BL93UxrqYBAGNOgI2",
-    "Hwang": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5Y9hflTAH8dVYLeOr10jHR",
-    "Raphael": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4vGjaOfK800WFGyx6EbCG1",
-    "Xianghua": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6LjfBNjGih8rH6pGcW1rg-",
-    "Astaroth": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4YdujqkS3PCw8HoaqC7p40",
-    "Ivy": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6jL0gEFDhFF8ypHtpU3ZQJ",
-    "Kilik": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4lDq3Ko9-yw4ipOzALlRf5",
-    "Maxi": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5HBO3pV8il2FFtRNcHLGEg",
-    "Seong Mi-na": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6faZQFTW_-d883_az5An5g",
-    "Sophitia": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7_Yf0QJUfGVpErfaQ7u_bV",
-    "Yoshimitsu": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7mTyKaL4pb_hzKvI6WHLgw",
-    "Cervantes": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7q1b8iijnrYmaYuI27Gfyo",
-    "Mitsurugi": "https://www.youtube.com/playlist?list=PL90QAKwVH1t64CN2gW3GZYr6OiKOGRsWQ",
-    "Nightmare": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5lPgdyLfAac9Msc77gqGjZ",
-    "Siegfried": "https://www.youtube.com/playlist?list=PL90QAKwVH1t49YI80I9PtNerAjAklbWXf",
-    "Voldo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4JEKK40NPSAIXIO8Bh5Mu-",
-    "Duelos": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5g2Pirxvs9YFm7blxYyvhl",
-    "Ranked": "https://www.youtube.com/playlist?list=PL90QAKwVH1t79_xIVc3WnFp8QCk8a7d3N"
-}
+# listas_reproduccion_dict = {
+#     "estebangris": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7dhJeajYfB2WQ_k0U0SLks",
+#     "Edu Bushi": "https://www.youtube.com/playlist?list=PL90QAKwVH1t52khCu1KxcwoCMzKrZ_WiB",
+#     "Skymathiana": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7orxKOl8Hi3LlGl3TaiEic",
+#     "Kovas": "https://www.youtube.com/playlist?list=PL90QAKwVH1t76kUbMnqm_sM49OtCkwUML",
+#     "raynarrok": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4yWgUWujRmh_CpXPv6ovG1",
+#     "team ninja": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5JUGLclQVjE3PWEGqC-ozz",
+#     "Toshiaki": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6-w5tz92uI5J-ThcivHCC9",
+#     "Karol": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4_84l7sweKXqbAxBUCD6Wb",
+#     "Rodol_Foffo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5vafp6hLS2lt6KF0S2m86a",
+#     "Fire red": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5Ww1-2kqO5AeMJfuNBvzsb",
+#     "ozkuervo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4SnxBgafpkevWUxByL_Gpn",
+#     "JaffarWolf": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6OazJzpkop7W6u9v4Q4cgH",
+#     "leospirandio": "https://www.youtube.com/playlist?list=PL90QAKwVH1t76HmAfTwU9dxQp28Uv2bPX",
+#     "Camus": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5F3cOnsi0LEWya5FztxGTw",
+#     "Nightwing_Ialmar": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7BZE16Lds-STFuexFYS4sI",
+#     "Lang_FFXIII": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7oeQGl1kXJfLod9wwji8NQ",
+#     "Ubitreides": "https://www.youtube.com/playlist?list=PL90QAKwVH1t67SU9-Br4O5a9teuu4cZvL",
+#     "Adrianncr": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7zOm81n6T_fUa5aNyuHJ0v",
+#     "RYUDO": "https://www.youtube.com/playlist?list=PL90QAKwVH1t74Qzm4wlx604Ffw1hbHY6x",
+#     "SigFrancis": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6fRaOJPS84khrnPhlKodB7",
+#     "Kyoragecl": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4wszcCcv3sVPWv5kGHOW5y",
+#     "LN_Mastodon": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5WtjO5OrpAs9VeRC3LPCyj",
+#     "DuCaine": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5ne2e6POOCmL43DogtrDzo",
+#     "Eddy_Beowulf": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6libDfzT5ZgnCKty20jPki",
+#     "SaimonChaild": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6BIHUbhWoiImcYZbeQYFzW",
+#     "Sebas_ep90": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5cCPrXbS3vyIIHSP5ssLzE",
+#     "Gontranno": "https://www.youtube.com/playlist?list=PL90QAKwVH1t78dk4jj6x51dJa_oEFQJJu",
+#     "E1000": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5OrZV2eQgXC2S2OslYIoNK",
+#     "wylde": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6EGhT85l7I_dyhcr8kScjl",
+#     "Estaries": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5vdm87xTohCp1mYcr0RXBb",
+#     "Marv_995": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7tqJ9tdKQ377j_PGNwTKb9",
+#     "zen-x": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5iVwDcfNHJ30ORntTWE_Mt",
+#     "Albhed_x": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6tHpF3Q1Q1JQAGO-re1e-X",
+#     "Taki": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7W3yhPMKyU9uje26G1ZnBu",
+#     "Talim": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7R1-ibZfefU2wUDRAIa3G2",
+#     "Setsuka": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6GsZ9sHFdkhLJ4MdSEOrwF",
+#     "Hilde": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5CnUs7a5OfQAQsL_VQdAF4",
+#     "2B": "https://www.youtube.com/playlist?list=PL90QAKwVH1t60fEU20FYYg20Tp1Y5FBGQ",
+#     "Azwel": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6q-TlxlQSVO-F1WLcSLT03",
+#     "Geralt": "https://www.youtube.com/playlist?list=PL90QAKwVH1t78v9zPaxD-M2WS5W8Shdf9",
+#     "Groh": "https://www.youtube.com/playlist?list=PL90QAKwVH1t75-dwernEnAEWlSX73fzex",
+#     "Haohmaru": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4IvEvmhRHEfz-xEzMaoLiR",
+#     "Zasalamel": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6a2rA51DIX72J95BqTnsbh",
+#     "Tira": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4dqovymm_ftxh69-vXOG0e",
+#     "Amy": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7QvwDN2c4jbLq0hhqVlOFq",
+#     "Cassandra": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5anV4BL93UxrqYBAGNOgI2",
+#     "Hwang": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5Y9hflTAH8dVYLeOr10jHR",
+#     "Raphael": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4vGjaOfK800WFGyx6EbCG1",
+#     "Xianghua": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6LjfBNjGih8rH6pGcW1rg-",
+#     "Astaroth": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4YdujqkS3PCw8HoaqC7p40",
+#     "Ivy": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6jL0gEFDhFF8ypHtpU3ZQJ",
+#     "Kilik": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4lDq3Ko9-yw4ipOzALlRf5",
+#     "Maxi": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5HBO3pV8il2FFtRNcHLGEg",
+#     "Seong Mi-na": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6faZQFTW_-d883_az5An5g",
+#     "Sophitia": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7_Yf0QJUfGVpErfaQ7u_bV",
+#     "Yoshimitsu": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7mTyKaL4pb_hzKvI6WHLgw",
+#     "Cervantes": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7q1b8iijnrYmaYuI27Gfyo",
+#     "Mitsurugi": "https://www.youtube.com/playlist?list=PL90QAKwVH1t64CN2gW3GZYr6OiKOGRsWQ",
+#     "Nightmare": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5lPgdyLfAac9Msc77gqGjZ",
+#     "Siegfried": "https://www.youtube.com/playlist?list=PL90QAKwVH1t49YI80I9PtNerAjAklbWXf",
+#     "Voldo": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4JEKK40NPSAIXIO8Bh5Mu-",
+#     "Duelos": "https://www.youtube.com/playlist?list=PL90QAKwVH1t5g2Pirxvs9YFm7blxYyvhl",
+#     "Ranked": "https://www.youtube.com/playlist?list=PL90QAKwVH1t79_xIVc3WnFp8QCk8a7d3N"
+# }
 
 
 def lista_sumar_elementos(lista):
@@ -197,46 +197,47 @@ def obtener_listas_de_reproduccion(archivo_abierto, reproduccion_lista, listas_r
             archivo_abierto.write(texto)
 
 
-def texto_adicional(archivo_abierto):
-    '''
-    Texto adicional para añadir al final de la descripción del video de YouTube.
-    '''
-    texto_lista = [
-        "Soul Calibur VI desde 0: https://www.youtube.com/playlist?list=PL90QAKwVH1t4GEDI3Ym8JeL88AyJKcu5S",
-        "Soul Calibur VI (2.31) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t6IRTa0tafOj45cbFqzmxYH",
-        "Soul Calibur VI (2.31) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5-BK_yFrn6UDBXQQYoaOL7",
-        "Soul Calibur VI (2.30) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5CsrL_ilDpyprz6UwaKLC5",
-        "Soul Calibur VI (2.25.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7XcfURbvuIGUXif3zApMQb",
-        "Soul Calibur VI (2.25.01) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5Gee5X7k9my0CvdIgajlMb",
-        "Soul Calibur VI (2.25) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7CxstJnE5h68OA-mpGWb-5",
-        "Soul Calibur VI (2.21) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4JWONGVerwdu6GWs6kUowB",
-        "Soul Calibur VI (2.12) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4XUXIaIzrm5tv_OAonfyU9",
-        "Soul Calibur VI (2.10.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6MKVd2hJJ-CzBFYykjK_zx",
-        "Soul Calibur VI (2.05) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7L6mlmtX4dArS5V2cGWYtR",
-        "Soul Calibur VI (2.02) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6YwKhGeCki9ONi4eRIpA8f",
-        "Soul Calibur VI (2.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6BabI6xP4IIkBPM0pI9OWC",
-        "Soul Calibur VI (S1) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5d1ZrcDC7sOssxuvh2opx3",
-        "Soul Calibur VI (S1) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6g09h8t4dEmNKLL5BtnENW",
-        "SCUFFLE: https://github.com/aHorseface/Scuffle/releases"
-        "Soul Calibur III: https://www.youtube.com/playlist?list=PL90QAKwVH1t6vuanXTfU2s6kzO0rNq6Le",
-        "Soul Calibur IV: https://www.youtube.com/playlist?list=PL90QAKwVH1t4Ps9-pU3qGUc8wkGpmSgqH",
-        "Soul Calibur V: https://www.youtube.com/playlist?list=PL90QAKwVH1t66BTTz0UDi3nTF8ro6BAJa",
-        "Soul Calibur - The Legend Will Never Die: https://www.youtube.com/playlist?list=PL90QAKwVH1t6RJZLrQW8aGjbhQFgrA8O4",
-        "Soul Calibur VI: https://www.youtube.com/playlist?list=PL90QAKwVH1t7TUmdcc1oGOOWm6a1pQCrG",
-        "Soul Calibur VI - Historias: https://www.youtube.com/playlist?list=PL90QAKwVH1t7keR4IGG5vJG9mnvbgAM4N"
-    ]
-    archivo_abierto.write("\n".join(texto_lista))
+# def texto_adicional(archivo_abierto):
+#     '''
+#     Texto adicional para añadir al final de la descripción del video de YouTube.
+#     '''
+#     texto_lista = [
+#         "Soul Calibur VI desde 0: https://www.youtube.com/playlist?list=PL90QAKwVH1t4GEDI3Ym8JeL88AyJKcu5S",
+#         "Soul Calibur VI (2.31) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t6IRTa0tafOj45cbFqzmxYH",
+#         "Soul Calibur VI (2.31) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5-BK_yFrn6UDBXQQYoaOL7",
+#         "Soul Calibur VI (2.30) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t5CsrL_ilDpyprz6UwaKLC5",
+#         "Soul Calibur VI (2.25.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7XcfURbvuIGUXif3zApMQb",
+#         "Soul Calibur VI (2.25.01) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5Gee5X7k9my0CvdIgajlMb",
+#         "Soul Calibur VI (2.25) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7CxstJnE5h68OA-mpGWb-5",
+#         "Soul Calibur VI (2.21) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4JWONGVerwdu6GWs6kUowB",
+#         "Soul Calibur VI (2.12) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t4XUXIaIzrm5tv_OAonfyU9",
+#         "Soul Calibur VI (2.10.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6MKVd2hJJ-CzBFYykjK_zx",
+#         "Soul Calibur VI (2.05) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t7L6mlmtX4dArS5V2cGWYtR",
+#         "Soul Calibur VI (2.02) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6YwKhGeCki9ONi4eRIpA8f",
+#         "Soul Calibur VI (2.01) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6BabI6xP4IIkBPM0pI9OWC",
+#         "Soul Calibur VI (S1) - Combates offline: https://www.youtube.com/playlist?list=PL90QAKwVH1t5d1ZrcDC7sOssxuvh2opx3",
+#         "Soul Calibur VI (S1) - Combates online: https://www.youtube.com/playlist?list=PL90QAKwVH1t6g09h8t4dEmNKLL5BtnENW",
+#         "SCUFFLE: https://github.com/aHorseface/Scuffle/releases"
+#         "Soul Calibur III: https://www.youtube.com/playlist?list=PL90QAKwVH1t6vuanXTfU2s6kzO0rNq6Le",
+#         "Soul Calibur IV: https://www.youtube.com/playlist?list=PL90QAKwVH1t4Ps9-pU3qGUc8wkGpmSgqH",
+#         "Soul Calibur V: https://www.youtube.com/playlist?list=PL90QAKwVH1t66BTTz0UDi3nTF8ro6BAJa",
+#         "Soul Calibur - The Legend Will Never Die: https://www.youtube.com/playlist?list=PL90QAKwVH1t6RJZLrQW8aGjbhQFgrA8O4",
+#         "Soul Calibur VI: https://www.youtube.com/playlist?list=PL90QAKwVH1t7TUmdcc1oGOOWm6a1pQCrG",
+#         "Soul Calibur VI - Historias: https://www.youtube.com/playlist?list=PL90QAKwVH1t7keR4IGG5vJG9mnvbgAM4N"
+#     ]
+#     archivo_abierto.write("\n".join(texto_lista))
 
 
 def generar_descripcion(nombre_salida_marcas_tiempo,
                         nombre_descripcion,
                         lista_resultado_duraciones,
                         pos_lista,
-                        rival_nombre,
-                        canales_adicionales,
-                        reproduccion_lista,
-                        juego_nombre,
-                        etiquetas):
+                        # rival_nombre,
+                        # canales_adicionales,
+                        # reproduccion_lista,
+                        # juego_nombre,
+                        etiquetas,
+                        description_db_path):
     '''
     Devulve la descripción para el video de YouTube.
     Formato:
@@ -247,6 +248,41 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
         * Listas de reproducción
         * Texto adicional
     '''
+    # Load json5
+    with open(description_db_path, "r", encoding="utf8") as f:
+        db_dict = json.load(f)
+    
+    player_string = ""
+    keywords = etiquetas.split(", ")
+    for e in keywords:
+        if db_dict.get(e):
+            if isinstance(db_dict[e], dict): # If is a dict 
+                if db_dict[e].get("type"):
+                    if db_dict[e]["type"] == "player":
+                        player_string += f"{e}:\n"
+                        if db_dict[e]["contact"] != []:
+                            player_string += "\n".join(db_dict[e]["contact"]) + "\n"
+                        player_string += db_dict[e]["playlist"] + "\n"
+                        # if db_dict[e]["others"] != []:
+                        #     for other in db_dict[e]["others"]:
+                        #         player_string += f"{other}:\n" + "\n".join(db_dict[other]) + "\n"
+                        player_string += "\n"
+                    elif db_dict[e]["type"] == "character":
+                        player_string += f"{e}: " + db_dict[e]["playlist"] + "\n\n"
+
+    player_string += "Soul Calibur Chile:\n" + "\n".join(db_dict["Soul Calibur Chile"]) + "\n"
+    player_string += "Soul Calibur América: " + db_dict["Soul Calibur América"] + "\n"
+    player_string += "Soul Calibur VI desde 0: " + db_dict["Soul Calibur VI desde 0"] + "\n"
+    player_string += "Soul Calibur VI (2.31) - Combates online: " + db_dict["2.31 online"] + "\n"
+    player_string += "Soul Calibur VI (2.31) - Combates offline: " + db_dict["2.31 offline"] + "\n"
+    player_string += "Soul Calibur VI - Torneos: " + db_dict["Torneos"] + "\n"
+    player_string += "Soul Calibur VI - Duelos: " + db_dict["Duelos"] + "\n"
+    player_string += "Soul Calibur IV - Ranked: " + db_dict["ranked"] + "\n"
+    player_string += "Soul Calibur IV: " + db_dict["Soul Calibur IV"] + "\n"
+    player_string += "Soul Calibur V: " + db_dict["Soul Calibur V"] + "\n"
+    player_string += "Scuffle: " + db_dict["Scuffle"] + "\n"
+
+    # Description generation
     with open(nombre_salida_marcas_tiempo, 'w', encoding="utf8") as archivo:
         archivo.write(nombre_descripcion)
         archivo.write("\n")
@@ -254,11 +290,12 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
         archivo.write("\n")
         generar_marcas_de_tiempo(archivo, lista_resultado_duraciones, pos_lista)
         archivo.write("\n")
-        obtener_canales(archivo, canales_dict, rival_nombre, canales_adicionales)
-        archivo.write("\n")
-        obtener_listas_de_reproduccion(archivo, reproduccion_lista, listas_reproduccion_dict, juego_nombre)
-        archivo.write("\n")
-        texto_adicional(archivo)
+        archivo.write(player_string)
+        # obtener_canales(archivo, canales_dict, rival_nombre, canales_adicionales)
+        # archivo.write("\n")
+        # obtener_listas_de_reproduccion(archivo, reproduccion_lista, listas_reproduccion_dict, juego_nombre)
+        # archivo.write("\n")
+        # texto_adicional(archivo)
 
 
 def seleccionar_pantalla_final(pantallas_final_ruta, plataforma):
@@ -277,7 +314,8 @@ def videos_por_parte(mkvmerge_ruta, # Ruta donde se aloja mkvmerge.exe
                     videos_ruta, # Ruta de los videos a procesar
                     duracion_maxima_por_video, # Debe estar dada en minutos
                     ODatosNombre, # Lista de strings para dar formato al nombre del archivo
-                    pantallas_final_ruta):
+                    pantallas_final_ruta,
+                    description_db_path):
     '''
     Toma una lista de videos de un directorio y los separa/mueve en subdirectorios
     en base a la duración pasada por parámetro. Luego los une con mkvmerge y finalmente los renombra.
@@ -369,35 +407,29 @@ def videos_por_parte(mkvmerge_ruta, # Ruta donde se aloja mkvmerge.exe
         nombre_descripcion = ODatosNombre.generar_nombre() + str(pos_lista[0]+1) + "/" + str(len(lista_resultado)) + ")"
 
         # Archivo de descripción del video
-        players_names_list = list()
-        for e in [ODatosNombre.jugador1_nombre, ODatosNombre.jugador2_nombre]:
-            if e != "Seyfer":
-                players_names_list.append(e)
+        # players_names_list = list()
+        # for e in [ODatosNombre.jugador1_nombre, ODatosNombre.jugador2_nombre]:
+        #     if e != "Seyfer":
+        #         players_names_list.append(e)
 
-        # if ODatosNombre.jugador1_nombre == "Seyfer": # El rival es aquel que no soy yo
-        #     # rival_nombre = ODatosNombre.jugador2_nombre
-        #     players_names_list.append(ODatosNombre.jugador2_nombre)
-
+        # if ODatosNombre.combate_formato.startswith("FT"):
+        #     formato = "Duelos"
+        # elif ODatosNombre.combate_formato == "ranked":
+        #     formato = "Ranked"
         # else:
-        #     # rival_nombre = ODatosNombre.jugador1_nombre
-        #     players_names_list.append(ODatosNombre.jugador1_nombre)
-        if ODatosNombre.combate_formato.startswith("FT"):
-            formato = "Duelos"
-        elif ODatosNombre.combate_formato == "ranked":
-            formato = "Ranked"
-        else:
-            formato = "Casual"
-        personajes_listas_reproduccion = list(set(ODatosNombre.jugador1_personajes.split(", ") + ODatosNombre.jugador2_personajes.split(", "))) # Se eliminan personajes repetidos
-        reproduccion_lista = players_names_list + personajes_listas_reproduccion + [formato]
+        #     formato = "Casual"
+        # personajes_listas_reproduccion = list(set(ODatosNombre.jugador1_personajes.split(", ") + ODatosNombre.jugador2_personajes.split(", "))) # Se eliminan personajes repetidos
+        # reproduccion_lista = players_names_list + personajes_listas_reproduccion + [formato]
         generar_descripcion(nombre_salida_marcas_tiempo,
                             nombre_descripcion,
                             lista_resultado_duraciones,
                             pos_lista,
-                            players_names_list,
-                            ODatosNombre.canales_adicionales,
-                            reproduccion_lista,
-                            ODatosNombre.juego_nombre,
-                            ODatosNombre.generar_etiquetas())
+                            # players_names_list,
+                            # ODatosNombre.canales_adicionales,
+                            # reproduccion_lista,
+                            # ODatosNombre.juego_nombre,
+                            ODatosNombre.generar_etiquetas(),
+                            description_db_path)
 
         # Sintaxis para mkvmerge
         mkvmerge_lista = [mkvmerge_ruta,
