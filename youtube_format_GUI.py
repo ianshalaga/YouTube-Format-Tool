@@ -16,7 +16,8 @@ formato = ["casual", "ranked", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
 # Load json5
-with open("scvi_db.json5", "r", encoding="utf8") as f:
+scvi_db_path = "scvi_db.json5"
+with open(scvi_db_path, "r", encoding="utf8") as f:
     db_dict = json.load(f)
 
 jugadores_lista = list()
@@ -159,13 +160,13 @@ formulario = [
         # psg.Input(size=(19, 1), enable_events=True, key="PJ2"),
         psg.Combo(values=personajes_lista, default_value=personajes_lista[0], key="PJ2", size=(18, 1)),
     ],
-    [
-        psg.HSeparator()
-    ],
-    [
-        psg.Checkbox("Canales adicionales: ", enable_events=True, key="CA_CHK"),
-        psg.Input(default_text="Soul Calibur Chile", size=(60, 1), enable_events=True, key="CA"),  
-    ],
+    # [
+    #     psg.HSeparator()
+    # ],
+    # [
+    #     psg.Checkbox("Canales adicionales: ", enable_events=True, key="CA_CHK"),
+    #     psg.Input(default_text="Soul Calibur Chile", size=(60, 1), enable_events=True, key="CA"),  
+    # ],
     [
         psg.HSeparator()
     ],
@@ -198,10 +199,10 @@ while True:
     ventana["ARCHIVOS"].update(os.listdir(values["VIDEOS"]))
     if event == "Exit" or event == psg.WIN_CLOSED:
         break
-    if values["CA_CHK"]:
-        canales_adicionales = values["CA"].split(", ")
-    else:
-        canales_adicionales = []
+    # if values["CA_CHK"]:
+    #     canales_adicionales = values["CA"].split(", ")
+    # else:
+    #     canales_adicionales = []
     if event == "INICIAR":
         ODatosNombre = ytf.datos_nombre(values["JUEGO"],
                                         values["VERSION"],
@@ -211,10 +212,15 @@ while True:
                                         values["PJ1"],
                                         values["J2"],
                                         values["PJ2"],
-                                        values["PLATAFORMA"],
-                                        canales_adicionales)
+                                        values["PLATAFORMA"]) #,
+                                        # canales_adicionales)
         try:
-            ytf.videos_por_parte(values["MKVMERGE"],values["VIDEOS"],int(values["PASO"]),ODatosNombre,values["PANTALLAS_FINAL"])
+            ytf.videos_por_parte(values["MKVMERGE"],
+                                 values["VIDEOS"],
+                                 int(values["PASO"]),
+                                 ODatosNombre,
+                                 values["PANTALLAS_FINAL"],
+                                 scvi_db_path)
             ventana["ARCHIVOS"].update(os.listdir(values["VIDEOS"]))
         except:
             pass

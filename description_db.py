@@ -3,6 +3,13 @@ import json
 
 db_dict = {
     # Players
+    "Seyfer": {
+        "type": "player",
+        "contact": ["https://www.youtube.com/c/SeyferStudios"],
+        "playlist": "",
+        "others": ["Soul Calibur Chile", "Soul Calibur América"]        
+    },
+
     "Bad Gato": {
         "type": "player",
         "contact": ["https://www.youtube.com/channel/UCcMG9OE9PlOvXd8PIgl1l-Q"],

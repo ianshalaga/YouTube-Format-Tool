@@ -253,34 +253,36 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
         db_dict = json.load(f)
     
     player_string = ""
-    keywords = etiquetas.split(", ")
+    keywords = list(set(etiquetas.split(", ")))
     for e in keywords:
         if db_dict.get(e):
             if isinstance(db_dict[e], dict): # If is a dict 
                 if db_dict[e].get("type"):
                     if db_dict[e]["type"] == "player":
-                        player_string += f"{e}:\n"
-                        if db_dict[e]["contact"] != []:
-                            player_string += "\n".join(db_dict[e]["contact"]) + "\n"
-                        player_string += db_dict[e]["playlist"] + "\n"
-                        # if db_dict[e]["others"] != []:
-                        #     for other in db_dict[e]["others"]:
-                        #         player_string += f"{other}:\n" + "\n".join(db_dict[other]) + "\n"
-                        player_string += "\n"
+                        if e != "Seyfer":
+                            player_string += f"Soul Calibur VI - Combates - {e}: "
+                            player_string += db_dict[e]["playlist"] + "\n"
+                            if db_dict[e]["contact"] != []:
+                                player_string += "\n".join(db_dict[e]["contact"]) + "\n"
+                            player_string += "\n"
                     elif db_dict[e]["type"] == "character":
-                        player_string += f"{e}: " + db_dict[e]["playlist"] + "\n\n"
+                        player_string += f"Soul Calibur VI - Combates - {e}: " + db_dict[e]["playlist"] + "\n\n"
+            # else: # If is not a dict
+            #     if isinstance(db_dict[e], list): # If is a list
+            #         player_string += f"{}"
 
-    player_string += "Soul Calibur Chile:\n" + "\n".join(db_dict["Soul Calibur Chile"]) + "\n"
-    player_string += "Soul Calibur América: " + db_dict["Soul Calibur América"] + "\n"
-    player_string += "Soul Calibur VI desde 0: " + db_dict["Soul Calibur VI desde 0"] + "\n"
-    player_string += "Soul Calibur VI (2.31) - Combates online: " + db_dict["2.31 online"] + "\n"
-    player_string += "Soul Calibur VI (2.31) - Combates offline: " + db_dict["2.31 offline"] + "\n"
-    player_string += "Soul Calibur VI - Torneos: " + db_dict["Torneos"] + "\n"
-    player_string += "Soul Calibur VI - Duelos: " + db_dict["Duelos"] + "\n"
-    player_string += "Soul Calibur IV - Ranked: " + db_dict["ranked"] + "\n"
-    player_string += "Soul Calibur IV: " + db_dict["Soul Calibur IV"] + "\n"
-    player_string += "Soul Calibur V: " + db_dict["Soul Calibur V"] + "\n"
-    player_string += "Scuffle: " + db_dict["Scuffle"] + "\n"
+    player_string += "Soul Calibur Chile:\n" + "\n".join(db_dict["Soul Calibur Chile"]) + "\n\n"
+    player_string += "Soul Calibur América: " + "\n".join(db_dict["Soul Calibur América"]) + "\n\n"
+    player_string += "Soul Calibur VI desde 0: " + db_dict["Soul Calibur VI desde 0"] + "\n\n"
+    player_string += "Soul Calibur VI (2.31) - Combates online: " + db_dict["2.31 online"] + "\n\n"
+    player_string += "Soul Calibur VI (2.31) - Combates offline: " + db_dict["2.31 offline"] + "\n\n"
+    player_string += "Soul Calibur VI - Torneos: " + db_dict["Torneos"] + "\n\n"
+    player_string += "Soul Calibur VI - Duelos: " + db_dict["Duelos"] + "\n\n"
+    player_string += "Soul Calibur IV - Ranked: " + db_dict["Ranked"] + "\n\n"
+    player_string += "Soul Calibur III: " + db_dict["Soul Calibur III"] + "\n\n"
+    player_string += "Soul Calibur IV: " + db_dict["Soul Calibur IV"] + "\n\n"
+    player_string += "Soul Calibur V: " + db_dict["Soul Calibur V"] + "\n\n"
+    player_string += "Scuffle: " + db_dict["Scuffle"]
 
     # Description generation
     with open(nombre_salida_marcas_tiempo, 'w', encoding="utf8") as archivo:
@@ -289,7 +291,7 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
         archivo.write(etiquetas)
         archivo.write("\n")
         generar_marcas_de_tiempo(archivo, lista_resultado_duraciones, pos_lista)
-        archivo.write("\n")
+        archivo.write("\n\n")
         archivo.write(player_string)
         # obtener_canales(archivo, canales_dict, rival_nombre, canales_adicionales)
         # archivo.write("\n")
@@ -462,8 +464,8 @@ class datos_nombre: # Datos para nombrar los videos de las peleas
                 jugador1_personajes,
                 jugador2_nombre,
                 jugador2_personajes,
-                plataforma, # PC, PS4
-                canales_adicionales):
+                plataforma): #, # PC, PS4
+                # canales_adicionales):
         self.juego_nombre = juego_nombre
         self.juego_version = juego_version
         self.combate_tipo = combate_tipo
@@ -473,7 +475,7 @@ class datos_nombre: # Datos para nombrar los videos de las peleas
         self.jugador1_personajes = jugador1_personajes
         self.jugador2_personajes = jugador2_personajes
         self.plataforma = plataforma
-        self.canales_adicionales = canales_adicionales
+        # self.canales_adicionales = canales_adicionales
     
     def generar_nombre(self):
         return self.juego_nombre + " (" + self.juego_version + ") - " + self.combate_tipo + " " + self.combate_formato + " - " + self.jugador1_nombre + " (" + self.jugador1_personajes + ") VS " + self.jugador2_nombre + " (" + self.jugador2_personajes + ") ("
