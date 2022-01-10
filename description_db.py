@@ -207,7 +207,7 @@ db_dict = {
         "others": ["Soul Calibur Chile"]
     },
 
-    "Skymathiana": {
+    "Annie": {
         "type": "player",
         "contact": [],
         "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7orxKOl8Hi3LlGl3TaiEic",
