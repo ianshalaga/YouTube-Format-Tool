@@ -312,6 +312,13 @@ db_dict = {
         "others": ["Soul Calibur Chile"]
     },
 
+    "Sagadalius": {
+        "type": "player",
+        "contact": [],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7SI0paoelLW60ka4fEO175",
+        "others": ["Soul Calibur Chile"]
+    },
+
     # Characters
     "Taki": {
         "type": "character",
