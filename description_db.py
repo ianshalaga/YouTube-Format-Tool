@@ -319,6 +319,13 @@ db_dict = {
         "others": ["Soul Calibur Chile"]
     },
 
+    "DaiaNerdKilik": {
+        "type": "player",
+        "contact": ["https://twitter.com/DaiaNerdKilik", "https://www.youtube.com/c/DaiaNerd"],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4bfFKuZL3w81ItKwXYRUfc",
+        "others": []
+    },
+
     # Characters
     "Taki": {
         "type": "character",
