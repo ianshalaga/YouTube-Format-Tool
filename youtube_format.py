@@ -271,8 +271,8 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
             #     if isinstance(db_dict[e], list): # If is a list
             #         player_string += f"{}"
 
-    player_string += "Seyfer Studios Lightning Tournament 9 (PC): " + "https://www.youtube.com/playlist?list=PL90QAKwVH1t5nA6XGgwlhS_2XrL8XvdYq" + "\n"
-    player_string += "Brackets: " + "https://challonge.com/es/2ja9lhxa" + "\n"
+    player_string += "Seyfer Studios Lightning Tournament 12 (PS4): " + "https://www.youtube.com/playlist?list=PL90QAKwVH1t7EYKNnomQL2Pnrf28VjJNQ" + "\n"
+    player_string += "Brackets: " + "https://challonge.com/es/qa9kvzt4" + "\n"
 
     player_string += "SSLT Rankings: " + "https://ianshalaga.github.io/sc_ranking" + "\n\n"
     player_string += "Seyfer Studios Soul Calibur Events: " + "https://s.team/chat/JeBLJtyq" + "\n\n"
@@ -288,7 +288,8 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
     player_string += "Soul Calibur III: " + db_dict["Soul Calibur III"] + "\n\n"
     player_string += "Soul Calibur IV: " + db_dict["Soul Calibur IV"] + "\n\n"
     player_string += "Soul Calibur V: " + db_dict["Soul Calibur V"] + "\n\n"
-    player_string += "Scuffle: " + db_dict["Scuffle"]
+    player_string += "Scuffle: " + db_dict["Scuffle"]  + "\n\n"
+    player_string += "Soul Calibur Portal: " + "https://soulcaliburportal.com/"
 
     # Description generation
     with open(nombre_salida_marcas_tiempo, 'w', encoding="utf8") as archivo:

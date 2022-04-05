@@ -326,6 +326,13 @@ db_dict = {
         "others": []
     },
 
+    "Imano": {
+        "type": "player",
+        "contact": [],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t4UX4ymnzNRvVFsY5iZT6qu",
+        "others": []
+    },
+
     # Characters
     "Taki": {
         "type": "character",
