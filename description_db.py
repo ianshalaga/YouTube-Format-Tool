@@ -333,6 +333,13 @@ db_dict = {
         "others": []
     },
 
+    "KeyMaster": {
+        "type": "player",
+        "contact": [],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7GPF9Meh174_ZlBFvIJB4m",
+        "others": []
+    },
+
     # Characters
     "Taki": {
         "type": "character",
