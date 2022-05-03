@@ -340,6 +340,13 @@ db_dict = {
         "others": []
     },
 
+    "Mistralero": {
+        "type": "player",
+        "contact": [],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6cp6h7DhNxlm5UINiu9md6",
+        "others": []
+    },
+
     # Characters
     "Taki": {
         "type": "character",
