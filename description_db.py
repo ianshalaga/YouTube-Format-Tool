@@ -342,8 +342,15 @@ db_dict = {
 
     "Mistralero": {
         "type": "player",
-        "contact": [],
+        "contact": ["https://www.youtube.com/channel/UChTS7Da-WTWDFfyCiD26p0w"],
         "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6cp6h7DhNxlm5UINiu9md6",
+        "others": []
+    },
+
+    "Estigmar": {
+        "type": "player",
+        "contact": ["https://www.youtube.com/channel/UCrMo_OBk7nDQFVihLvW7Vrg"],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6Mdpn1uulBuUUjOUOf-10v",
         "others": []
     },
 
