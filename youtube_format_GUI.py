@@ -12,7 +12,7 @@ mkvmerge_ruta = "C:/Program Files/MKVToolNix/mkvmerge.exe"
 pantallas_del_final_ruta = "E:/Grabaciones/Soulcalibur VI/Pantallas del final"
 videos_ruta = "E:/Grabaciones/Soulcalibur VI/Peleas"
 tipo = ["Online", "Offline"]
-formato = ["casual", "ranked", "FT5", "FT10"]
+formato = ["casual", "ranked", "FT2", "FT3", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]
 
 # Load json5

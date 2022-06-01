@@ -344,13 +344,20 @@ db_dict = {
         "type": "player",
         "contact": ["https://www.youtube.com/channel/UChTS7Da-WTWDFfyCiD26p0w"],
         "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6cp6h7DhNxlm5UINiu9md6",
-        "others": []
+        "others": ["Soul Calibur Chile"]
     },
 
     "Estigmar": {
         "type": "player",
         "contact": ["https://www.youtube.com/channel/UCrMo_OBk7nDQFVihLvW7Vrg"],
         "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6Mdpn1uulBuUUjOUOf-10v",
+        "others": ["Soul Calibur Chile"]
+    },
+
+    "Mime": {
+        "type": "player",
+        "contact": ["https://www.youtube.com/channel/UCfqoFSm2kLbp9AYSkEQ9iQA"],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t6-VR-2MWSqwRtPeTMdpElk",
         "others": []
     },
 
