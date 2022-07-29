@@ -271,11 +271,13 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
             #     if isinstance(db_dict[e], list): # If is a list
             #         player_string += f"{}"
 
-    player_string += "Seyfer Studios Lightning Team Tournament 4 (PS4): " + "https://www.youtube.com/playlist?list=PL90QAKwVH1t5Kjp_Nt07nxJPhNkssLgxt" + "\n"
-    player_string += "Brackets: " + "https://challonge.com/es/evm6hh1i" + "\n"
+    player_string += "Seyfer Studios Lightning Tournament 16 (PS4): " + "https://www.youtube.com/playlist?list=PL90QAKwVH1t45gowXwPvDJbLD3o47Xg32" + "\n"
+    player_string += "Brackets: " + "https://challonge.com/es/wozptihq" + "\n"
 
     player_string += "SSLT Rankings: " + "https://ianshalaga.github.io/sc_ranking" + "\n\n"
     player_string += "Seyfer Studios Soul Calibur Events: " + "https://s.team/chat/JeBLJtyq" + "\n\n"
+
+    player_string += "Twitch: " + "https://www.twitch.tv/seyferstudios" + "\n\n"
 
     player_string += "Soul Calibur Chile:\n" + "\n".join(db_dict["Soul Calibur Chile"]) + "\n\n"
     player_string += "Soul Calibur América: " + "\n".join(db_dict["Soul Calibur América"]) + "\n\n"
