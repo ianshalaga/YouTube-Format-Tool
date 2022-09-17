@@ -361,6 +361,13 @@ db_dict = {
         "others": []
     },
 
+    "Aamota": {
+        "type": "player",
+        "contact": [],
+        "playlist": "https://www.youtube.com/playlist?list=PL90QAKwVH1t7X70ak617Cw6Y8TRnR2hK4",
+        "others": []
+    },
+
     # Characters
     "Taki": {
         "type": "character",
