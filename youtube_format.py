@@ -271,8 +271,8 @@ def generar_descripcion(nombre_salida_marcas_tiempo,
             #     if isinstance(db_dict[e], list): # If is a list
             #         player_string += f"{}"
 
-    player_string += "Seyfer Studios Lightning Tournament Special Edition 2 (PS4): " + "https://www.youtube.com/playlist?list=PL90QAKwVH1t7pZWF1-L6_1yv21GqDFH8-" + "\n"
-    player_string += "Brackets: " + "https://challonge.com/es/4a7q9j9o" + "\n"
+    player_string += "Seyfer Studios Lightning League 1 (PS4): " + "https://www.youtube.com/playlist?list=PL90QAKwVH1t4Z4kFd9QAqGdHprsVtaN9c" + "\n"
+    player_string += "Brackets: " + "https://challonge.com/es/u5nndbg4" + "\n"
 
     player_string += "SSLT Rankings: " + "https://ianshalaga.github.io/sc_ranking" + "\n\n"
     player_string += "Seyfer Studios Soul Calibur Events: " + "https://s.team/chat/JeBLJtyq" + "\n\n"
