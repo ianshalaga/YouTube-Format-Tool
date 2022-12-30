@@ -23,7 +23,7 @@ def final_scenes_splitter(mkvmerge_path, videos_path, ending_cut_time):
 
 
 mkvmerge_path = "C:/Program Files/MKVToolNix/mkvmerge.exe"
-videos_path = "E:/Grabaciones/Soulcalibur VI/Peleas/SSLTT 6 PS4"
+videos_path = "E:/Grabaciones/Soulcalibur VI/Peleas/SSLL 1 PS4"
 ending_cut_time = 21 # Seconds
 
 final_scenes_splitter(mkvmerge_path, videos_path, ending_cut_time)
