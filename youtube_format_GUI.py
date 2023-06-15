@@ -8,9 +8,12 @@ import json
 ''' DISEÑO '''
 
 # Datos por defecto y elementos de menú desplegable
+# mkvmerge_ruta = "C:/Archivos de programa/MKVToolNix/mkvmerge.exe"
 mkvmerge_ruta = "C:/Program Files/MKVToolNix/mkvmerge.exe"
-pantallas_del_final_ruta = "E:/Grabaciones/Soulcalibur VI/Pantallas del final"
-videos_ruta = "E:/Grabaciones/Soulcalibur VI/Peleas"
+# pantallas_del_final_ruta = "E:/Grabaciones/Soulcalibur VI/Pantallas del final"
+pantallas_del_final_ruta = "E:/SEYFER/GRABACIONES/SOULCALIBURVI/PANTALLAS DEL FINAL"
+# videos_ruta = "E:/Grabaciones/Soulcalibur VI/Peleas"
+videos_ruta = "E:\SEYFER\GRABACIONES\SOULCALIBURVI\PELEAS"
 tipo = ["Online", "Offline"]
 formato = ["casual", "ranked", "FT2", "FT3", "FT5", "FT10"]
 plataforma = ["PS4", "PC"]

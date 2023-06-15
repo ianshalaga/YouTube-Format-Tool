@@ -1,4 +1,3 @@
-from ntpath import join
 from pathlib import Path # Para administrar archivos y directorios
 from moviepy.editor import VideoFileClip # Para extraer metadatos archivos de video
 import math # Módulo matemático
